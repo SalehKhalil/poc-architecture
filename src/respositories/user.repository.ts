@@ -1,14 +1,17 @@
+import { DataBase } from '../config/database.config'
 import { UserModel } from '../models/user.model'
 
 export class UserRepository {
-  private readonly users: UserModel[]
+  private readonly database
 
-  constructor () {
-    this.users = []
+  constructor (database: DataBase) {
+    this.database = database
   }
 
   create (user: UserModel): UserModel {
-    this.users.push(user)
+    this.database.users.push(user)
+
+    console.log(this.database)
 
     return user
   }

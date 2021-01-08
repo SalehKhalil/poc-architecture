@@ -1,6 +1,7 @@
 import { UserRepository } from '../../respositories/user.repository'
 import { UserModel } from '../../models/user.model'
 import { HttpError } from '../../helpers/errors/http.error'
+import { IService } from '../../interfaces/service.interface'
 
 interface Request {
   name: string
@@ -10,8 +11,8 @@ interface Request {
 export class CreateUserService implements IService {
   userRespository: UserRepository
 
-  constructor () {
-    this.userRespository = new UserRepository()
+  constructor (repository: UserRepository) {
+    this.userRespository = repository
   }
 
   execute (request: Request): UserModel {
