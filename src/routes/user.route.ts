@@ -1,11 +1,9 @@
 import { Router } from 'express'
 import { CreateUserService } from '../services/user/create.service'
 import { UserRepository } from '../respositories/user.repository'
-import { DataBase } from '../config/database.config'
 
 const userRouter = Router()
-const database = new DataBase()
-const userRespository = new UserRepository(database)
+const userRespository = new UserRepository()
 const createUserService = new CreateUserService(userRespository)
 
 userRouter.post('/create', async (req, res) => {

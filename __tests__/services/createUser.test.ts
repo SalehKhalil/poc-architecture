@@ -1,9 +1,7 @@
-import { DataBase } from '../../src/config/database.config'
 import { UserRepository } from '../../src/respositories/user.repository'
 import { CreateUserService } from '../../src/services/user/create.service'
 
-const database = new DataBase()
-const userRespository = new UserRepository(database)
+const userRespository = new UserRepository()
 const createUserService = new CreateUserService(userRespository)
 
 describe('Create User', () => {

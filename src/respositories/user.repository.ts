@@ -4,8 +4,8 @@ import { UserModel } from '../models/user.model'
 export class UserRepository {
   private readonly database
 
-  constructor (database: DataBase) {
-    this.database = database
+  constructor () {
+    this.database = new DataBase()
   }
 
   create (user: UserModel): UserModel {
