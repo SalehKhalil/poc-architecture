@@ -1,7 +1,6 @@
-import { ObjectSchema } from "joi";
+import { ObjectSchema } from 'joi'
 
 export interface IValidator {
-    bodyValidate: ObjectSchema
-    queryValidate: ObjectSchema
+  bodyValidate: ObjectSchema
+  queryValidate: ObjectSchema
 }
-  

@@ -1,7 +1,7 @@
 import { UserModel } from '../models/user.model'
 
 export class UserRepository {
-  private users: UserModel[]
+  private readonly users: UserModel[]
 
   constructor () {
     this.users = []
