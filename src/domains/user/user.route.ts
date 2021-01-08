@@ -1,12 +1,12 @@
 import { Router } from 'express'
-import { CreateUserService } from '../domains/user/services/create.service'
-import { UserRepository } from '../domains/user/user.repository'
+import { CreateUserService } from './services/create.service'
+import { UserRepository } from './user.repository'
 
-const userRouter = Router()
+const router = Router()
 const userRespository = new UserRepository()
 const createUserService = new CreateUserService(userRespository)
 
-userRouter.post('/create', async (req, res) => {
+router.post('/create', async (req, res) => {
   try {
     const { name, age, cep } = req.body
     const userCreated = await createUserService.execute({ name, age, cep })
@@ -17,4 +17,4 @@ userRouter.post('/create', async (req, res) => {
   }
 })
 
-export { userRouter }
+export { router }

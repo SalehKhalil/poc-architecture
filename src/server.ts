@@ -1,11 +1,13 @@
 import { server } from './config/express.config'
 import { validatorMiddleware } from './middlewares/validator.middleware'
 import { logMiddleware } from './middlewares/log.middleware'
-import { userRouter } from './routes/user.route'
+import { routesMiddleware } from './middlewares/routes.middleware'
 
 server.use(validatorMiddleware)
 server.use(logMiddleware)
-server.use('/user', userRouter)
+routesMiddleware(server)
+  .then(() => console.log('Routes registred!'))
+  .catch(err => console.error(err))
 
 server.listen(
   process.env.PORT,
