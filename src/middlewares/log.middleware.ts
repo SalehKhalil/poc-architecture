@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express'
 
-function log (req: Request, res: Response, next: NextFunction): void {
+function logMiddleware (req: Request, res: Response, next: NextFunction): void {
   const timestamp = new Date().getTime()
 
   console.log(`Init | ${timestamp}: ${req.path} - ${req.method}`)
@@ -12,4 +12,4 @@ function log (req: Request, res: Response, next: NextFunction): void {
   next()
 }
 
-export default log
+export { logMiddleware }

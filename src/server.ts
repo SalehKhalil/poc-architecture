@@ -1,9 +1,12 @@
 import { server } from './config/express.config'
-import logMiddleware from './middlewares/log.middleware'
+import { validatorMiddleware } from './middlewares/validator.middleware'
+import { logMiddleware } from './middlewares/log.middleware'
 import { userRouter } from './routes/user.route'
 
+server.use(validatorMiddleware)
 server.use(logMiddleware)
 server.use('/user', userRouter)
+server.get('/', (req, res) => res.json({ ok: 'ok' }))
 
 server.listen(
   process.env.PORT,

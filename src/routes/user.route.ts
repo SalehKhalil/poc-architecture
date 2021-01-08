@@ -10,9 +10,9 @@ userRouter.post('/create', (req, res) => {
     const createUserService = new CreateUserService()
     const userCreated = createUserService.execute({ name, age })
 
-    return res.json(userCreated).status(200)
+    return res.status(200).json(userCreated)
   } catch (err) {
-    return res.json(err).status(500)
+    return res.status(err.statusCode || 500).json(err)
   }
 })
 
