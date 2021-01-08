@@ -6,7 +6,6 @@ import { userRouter } from './routes/user.route'
 server.use(validatorMiddleware)
 server.use(logMiddleware)
 server.use('/user', userRouter)
-server.get('/', (req, res) => res.json({ ok: 'ok' }))
 
 server.listen(
   process.env.PORT,
