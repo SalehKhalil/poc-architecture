@@ -1,7 +1,6 @@
-import { UserRepository } from '../../respositories/user.repository'
-import { UserModel } from '../../models/user.model'
+import UserRepository from '../../repositories/user.repository'
+import { IUserModel, UserModel } from '../../models/user.model'
 import { HttpError } from '../../helpers/errors/http.error'
-import { IService } from '../../interfaces/service.interface'
 import { getAddressData } from '../../clients/viacep.client'
 
 interface Request {
@@ -10,26 +9,18 @@ interface Request {
   cep: string
 }
 
-export class CreateUserService implements IService {
-  userRespository: UserRepository
+export default async function createUserService (request: Request): Promise<IUserModel> {
+  const { name, age, cep } = request
 
-  constructor (repository: UserRepository) {
-    this.userRespository = repository
+  if (age < 18) {
+    throw new HttpError('User is too young', 403)
   }
 
-  async execute (request: Request): Promise<UserModel> {
-    const { name, age, cep } = request
+  const address = await getAddressData(cep)
 
-    if (age < 18) {
-      throw new HttpError('User is too young', 403)
-    }
+  const user = UserModel({ name, age, address })
 
-    const address = await getAddressData(cep)
+  const userCreated = UserRepository.create(user)
 
-    const user = new UserModel({ name, age, address })
-
-    const userCreated = this.userRespository.create(user)
-
-    return userCreated
-  }
+  return userCreated
 }

@@ -1,15 +1,26 @@
+import { IDataBase } from '../interfaces/database.interface'
 import { IEnvironment } from '../interfaces/enviroment.interface'
-import { UserModel } from '../models/user.model'
+import { IUserModel } from '../models/user.model'
 
-export class DataBase {
-  users: UserModel[]
+export const database = (() => {
+  let instance: IDataBase
 
-  constructor () {
-    const database = {
+  function createInstance (): IDataBase {
+    const dbEnvironment = {
       test: [],
       dev: []
     }[process.env.ENV as IEnvironment]
 
-    this.users = database
+    const users: IUserModel[] = dbEnvironment
+
+    return {
+      users
+    }
   }
-}
+
+  return () => {
+    if (!instance) instance = createInstance()
+
+    return instance
+  }
+})()
