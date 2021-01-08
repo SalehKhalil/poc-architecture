@@ -1,8 +1,8 @@
-import { UserRepository } from '../../respositories/user.repository'
-import { UserModel } from '../../models/user.model'
-import { HttpError } from '../../helpers/errors/http.error'
-import { IService } from '../../interfaces/service.interface'
-import { getAddressData } from '../../clients/viacep.client'
+import { UserRepository } from '../user.repository'
+import { UserModel } from '../user.model'
+import { HttpError } from '../../../helpers/errors/http.error'
+import { IService } from '../../../interfaces/service.interface'
+import { getAddressData } from '../clients/viacep.client'
 
 interface Request {
   name: string

@@ -1,5 +1,5 @@
-import { DataBase } from '../config/database.config'
-import { UserModel } from '../models/user.model'
+import { DataBase } from '../../config/database.config'
+import { UserModel } from './user.model'
 
 export class UserRepository {
   private readonly database

@@ -1,5 +1,5 @@
 import { IEnvironment } from '../interfaces/enviroment.interface'
-import { UserModel } from '../models/user.model'
+import { UserModel } from '../domains/user/user.model'
 
 export class DataBase {
   users: UserModel[]

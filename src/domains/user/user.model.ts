@@ -1,5 +1,5 @@
 import { v4 } from 'uuid'
-import { IAddress } from '../interfaces/address.interface'
+import { IAddress } from './interfaces/address.interface'
 
 export class UserModel {
   id: string

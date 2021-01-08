@@ -1,5 +1,5 @@
-import { UserRepository } from '../../src/respositories/user.repository'
-import { CreateUserService } from '../../src/services/user/create.service'
+import { UserRepository } from '../../src/domains/user/user.repository'
+import { CreateUserService } from '../../src/domains/user/services/create.service'
 
 const userRespository = new UserRepository()
 const createUserService = new CreateUserService(userRespository)
