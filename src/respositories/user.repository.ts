@@ -11,8 +11,6 @@ export class UserRepository {
   create (user: UserModel): UserModel {
     this.database.users.push(user)
 
-    console.log(this.database)
-
     return user
   }
 }

@@ -8,10 +8,10 @@ const database = new DataBase()
 const userRespository = new UserRepository(database)
 const createUserService = new CreateUserService(userRespository)
 
-userRouter.post('/create', (req, res) => {
+userRouter.post('/create', async (req, res) => {
   try {
-    const { name, age } = req.body
-    const userCreated = createUserService.execute({ name, age })
+    const { name, age, cep } = req.body
+    const userCreated = await createUserService.execute({ name, age, cep })
 
     return res.status(200).json(userCreated)
   } catch (err) {
