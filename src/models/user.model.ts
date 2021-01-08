@@ -1,4 +1,4 @@
-import { uuid } from 'uuidv4'
+import { v4 } from 'uuid'
 import { IAddress } from '../interfaces/address.interface'
 
 export class UserModel {
@@ -8,7 +8,7 @@ export class UserModel {
   address: IAddress
 
   constructor ({ name, age, address }: Omit<UserModel, 'id'>) {
-    this.id = uuid()
+    this.id = v4()
     this.name = name
     this.age = age
     this.address = address

@@ -7,7 +7,7 @@ export class DataBase {
   constructor () {
     const database = {
       test: [],
-      dev: [{ id: '1', name: 'Saleh', age: 22 }]
+      dev: []
     }[process.env.ENV as IEnvironment]
 
     this.users = database
