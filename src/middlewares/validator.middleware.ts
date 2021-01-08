@@ -19,7 +19,7 @@ async function validatorMiddleware (req: Request, res: Response, next: NextFunct
 
     if (hasQuery) {
       const { error } = validator.queryValidate.validate(req.query)
-      const hasError = Boolean(error)
+      const hasError = Boolean(error?.message)
 
       if (hasError) throw new HttpError(error?.message ?? 'Bad Request', 400)
     }

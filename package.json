@@ -1,5 +1,5 @@
 {
-  "name": "template",
+  "name": "architecture-template",
   "version": "2101.0.0",
   "description": "Template",
   "main": "src/server.js",
