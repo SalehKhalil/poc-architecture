@@ -11,7 +11,7 @@ userRouter.post('/create', async (req, res) => {
     const { name, age, cep } = req.body
     const userCreated = await createUserService.execute({ name, age, cep })
 
-    return res.status(200).json(userCreated)
+    return res.status(201).json(userCreated)
   } catch (err) {
     return res.status(err.statusCode ?? 500).json(err)
   }
