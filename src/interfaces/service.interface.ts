@@ -1,3 +1,3 @@
-export interface IService {
+export interface IController {
   execute: (request: any) => any
 }

@@ -1,12 +1,11 @@
+import { Service } from 'typedi'
+
 import { DataBase } from '../config/database.config'
 import { UserModel } from '../models/user.model'
 
+@Service()
 export class UserRepository {
-  private readonly database
-
-  constructor (database: DataBase) {
-    this.database = database
-  }
+  constructor (private readonly database: DataBase) {}
 
   create (user: UserModel): UserModel {
     this.database.users.push(user)

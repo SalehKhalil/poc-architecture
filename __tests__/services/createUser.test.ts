@@ -1,14 +1,14 @@
 import { DataBase } from '../../src/config/database.config'
 import { UserRepository } from '../../src/respositories/user.repository'
-import { CreateUserService } from '../../src/services/user/create.service'
+import { CreateUserController } from '../../src/controllers/user/create.controller'
 
 const database = new DataBase()
 const userRespository = new UserRepository(database)
-const createUserService = new CreateUserService(userRespository)
+const createUserController = new CreateUserController(userRespository)
 
 describe('Create User', () => {
   it('Should be return success user created', async () => {
-    const userCreated = await createUserService.execute({ name: 'Joao', age: 20, cep: '01001000' })
+    const userCreated = await createUserController.execute({ name: 'Joao', age: 20, cep: '01001000' })
 
     expect(userCreated).toHaveProperty('id')
     expect(userCreated).toHaveProperty('name', 'Joao')
@@ -17,9 +17,9 @@ describe('Create User', () => {
 
   it('Should be return failed, because user is under eighteen', async () => {
     try {
-      await createUserService.execute({ name: 'Joao', age: 17, cep: '01001000' })
+      await createUserController.execute({ name: 'Joao', age: 17, cep: '01001000' })
     } catch (err) {
-      expect(err).toHaveProperty('message', 'User is too young')
+      expect(err).toHaveProperty('message', 'Deve ser maior que 18 anos')
     }
   })
 })

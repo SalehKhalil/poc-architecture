@@ -1,6 +1,9 @@
+import { Service } from 'typedi'
+
 import { IEnvironment } from '../interfaces/enviroment.interface'
 import { UserModel } from '../models/user.model'
 
+@Service()
 export class DataBase {
   users: UserModel[]
 
@@ -8,7 +11,7 @@ export class DataBase {
     const database = {
       test: [],
       dev: []
-    }[process.env.ENV as IEnvironment]
+    }[process.env.ENV as IEnvironment || 'dev']
 
     this.users = database
   }
