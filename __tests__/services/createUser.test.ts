@@ -1,25 +1,25 @@
-import { DataBase } from '../../src/config/database.config'
-import { UserRepository } from '../../src/respositories/user.repository'
-import { CreateUserController } from '../../src/controllers/user/create.controller'
+import DataBase from '../../src/config/database.config';
+import UserRepository from '../../src/respositories/user.repository';
+import CreateUserService from '../../src/services/user/create.service';
 
-const database = new DataBase()
-const userRespository = new UserRepository(database)
-const createUserController = new CreateUserController(userRespository)
+const database = new DataBase();
+const userRespository = new UserRepository(database);
+const createUserService = new CreateUserService(userRespository);
 
 describe('Create User', () => {
   it('Should be return success user created', async () => {
-    const userCreated = await createUserController.execute({ name: 'Joao', age: 20, cep: '01001000' })
+    const userCreated = await createUserService.execute({ name: 'Joao', age: 20, cep: '01001000' });
 
-    expect(userCreated).toHaveProperty('id')
-    expect(userCreated).toHaveProperty('name', 'Joao')
-    expect(userCreated).toHaveProperty('age', 20)
-  })
+    expect(userCreated).toHaveProperty('id');
+    expect(userCreated).toHaveProperty('name', 'Joao');
+    expect(userCreated).toHaveProperty('age', 20);
+  });
 
   it('Should be return failed, because user is under eighteen', async () => {
     try {
-      await createUserController.execute({ name: 'Joao', age: 17, cep: '01001000' })
+      await createUserService.execute({ name: 'Joao', age: 17, cep: '01001000' });
     } catch (err) {
-      expect(err).toHaveProperty('message', 'Deve ser maior que 18 anos')
+      expect(err).toHaveProperty('message', 'Deve ser maior que 18 anos');
     }
-  })
-})
+  });
+});

@@ -1,11 +1,10 @@
-import express, { Application } from 'express'
-import dotenv from 'dotenv'
-import bodyParser from 'body-parser'
-import 'reflect-metadata'
+import express, { Application } from 'express';
+import dotenv from 'dotenv';
+import 'reflect-metadata';
 
-const server: Application = express()
+const server: Application = express();
 
-dotenv.config()
-server.use(bodyParser.json())
+dotenv.config();
+server.use(express.json());
 
-export { server }
+export default server;

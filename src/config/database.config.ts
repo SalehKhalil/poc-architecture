@@ -1,18 +1,18 @@
-import { Service } from 'typedi'
+import { Service } from 'typedi';
 
-import { IEnvironment } from '../interfaces/enviroment.interface'
-import { UserModel } from '../models/user.model'
+import { IEnvironment } from '../interfaces/enviroment.interface';
+import { IUserInterface } from '../interfaces/user.interface';
 
 @Service()
-export class DataBase {
-  users: UserModel[]
+export default class DataBase {
+  users: IUserInterface[]
 
-  constructor () {
+  constructor() {
     const database = {
       test: [],
-      dev: []
-    }[process.env.ENV as IEnvironment || 'dev']
+      dev: [],
+    }[process.env.ENV as IEnvironment || 'dev'];
 
-    this.users = database
+    this.users = database;
   }
 }

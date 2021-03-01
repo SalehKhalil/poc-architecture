@@ -1,15 +1,15 @@
-import { Service } from 'typedi'
+import { Service } from 'typedi';
 
-import { DataBase } from '../config/database.config'
-import { UserModel } from '../models/user.model'
+import DataBase from '../config/database.config';
+import { IUserInterface } from '../interfaces/user.interface';
 
 @Service()
-export class UserRepository {
-  constructor (private readonly database: DataBase) {}
+export default class UserRepository {
+  constructor(private readonly database: DataBase) {}
 
-  create (user: UserModel): UserModel {
-    this.database.users.push(user)
+  create(user: IUserInterface): IUserInterface {
+    this.database.users.push(user);
 
-    return user
+    return user;
   }
 }

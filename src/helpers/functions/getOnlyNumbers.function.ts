@@ -1,5 +1,5 @@
-function getOnlyNumber (text: string): string {
-  return text.replace(/\D/g, '')
+function getOnlyNumber(text: string): string {
+  return text.replace(/\D/g, '');
 }
 
-export { getOnlyNumber }
+export default getOnlyNumber;
